@@ -1,0 +1,18 @@
+version: '3.4'
+
+services:
+  mock-server:
+    logging:
+      driver: none
+    ports:
+      - 1080:1080
+
+  mock-mocker:
+    image: bla/mock-mocker:latest
+    build:
+      context: ./MockServer/Mocker
+      dockerfile: Dockerfile
+    depends_on:
+      - mock-server
+    networks:
+      - app-network 
